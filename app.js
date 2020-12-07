@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const Thing = require('./models/thing');
 
 const app = express();
 
@@ -14,10 +15,22 @@ app.use(bodyParser.json());
 
 
 app.use('/api/stuff', (req, res, next) => {
-    console.log(req.body);
-    res.status(201.).json({
-        message: 'Thing created successfully!'
-    })
+    const thing = new Thing({
+        title: req.body.title,
+        description: req.body.description,
+        imageUrl: req.body.imageUrl,
+        price: req.body.price,
+        userId: req.body.userId
+    });
+    thing.save().then(() => {
+        res.status(201).json({
+            message: 'Post saved successfully!'
+        });
+    }).catch((error) => {
+        req.status(400).json({
+            error: error
+        });
+    });
 });
 
 app.use('/api/stuff', (req, res, next) => {
