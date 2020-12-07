@@ -25,14 +25,14 @@ app.use('/api/stuff', (req, res, next) => {
         _id: 'string',
         title: 'My first thing',
         description: 'All of the info about my first thing',
-        imageUrl: '',
+        imageUrl: 'https://www.nextdaycamera.co.uk/acatalog/canon-5d-mark-iv-24-105.jpg',
         price: 4900,
         userId: 'asdsdgfdfg'
     }, {
         _id: 'strings',
         title: 'My second thing',
         description: 'All of the info about my second thing',
-        imageUrl: '',
+        imageUrl: 'https://www.nextdaycamera.co.uk/acatalog/canon-5d-mark-iv-24-105.jpg',
         price: 2900,
         userId: 'asdsdgfdfg'
     }];

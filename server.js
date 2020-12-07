@@ -1,5 +1,18 @@
+// MONGODB password: N9FKZbzyMDk4XqT
+// MONGO DB Connection mongodb+srv://Will:<password>@cluster0.x6uva.mongodb.net/<dbname>?retryWrites=true&w=majority
+
 const http = require('http');
+const mongoose = require('mongoose');
 const app = require('./app');
+
+mongoose.connect('mongodb+srv://Will:N9FKZbzyMDk4XqT@cluster0.x6uva.mongodb.net/<dbname>?retryWrites=true&w=majority')
+    .then(() => {
+        console.log('Successfully onnected to MongoDB Atlas!');
+    })
+    .catch((error) => {
+        console.log('Unable to connect to MongoDB Atlas!');
+        console.error(error);
+    })
 
 const normalizePort = val => {
     const port = parseInt(val, 10);
