@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 const Thing = require('./models/thing');
 
 const app = express();
@@ -14,7 +16,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 
-app.use('/api/stuff', (req, res, next) => {
+app.post('/api/stuff', (req, res, next) => {
     const thing = new Thing({
         title: req.body.title,
         description: req.body.description,
@@ -33,23 +35,29 @@ app.use('/api/stuff', (req, res, next) => {
     });
 });
 
+app.get('/api/stuff/:id', (req, res, next) => {
+    Thing.findOne({
+            _id: req.params.id
+        }).then((thing) => {
+            res.status(200).json(thing);
+        })
+        .catch((error) => {
+            res.status(404).json({
+                error: error
+            })
+        })
+});
+
+
+
 app.use('/api/stuff', (req, res, next) => {
-    const stuff = [{
-        _id: 'string',
-        title: 'My first thing',
-        description: 'All of the info about my first thing',
-        imageUrl: 'https://www.nextdaycamera.co.uk/acatalog/canon-5d-mark-iv-24-105.jpg',
-        price: 4900,
-        userId: 'asdsdgfdfg'
-    }, {
-        _id: 'strings',
-        title: 'My second thing',
-        description: 'All of the info about my second thing',
-        imageUrl: 'https://www.nextdaycamera.co.uk/acatalog/canon-5d-mark-iv-24-105.jpg',
-        price: 2900,
-        userId: 'asdsdgfdfg'
-    }];
-    res.status(200).json(stuff);
+    Thing.find().then((things) => {
+        res.status(200).json(things);
+    }).catch((error) => {
+        res.status(400).json({
+            error: error
+        })
+    })
 });
 
 module.exports = app;
