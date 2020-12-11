@@ -7,7 +7,7 @@ const app = require('./app');
 
 mongoose.connect('mongodb+srv://Will:N9FKZbzyMDk4XqT@cluster0.x6uva.mongodb.net/<dbname>?retryWrites=true&w=majority')
     .then(() => {
-        console.log('Successfully onnected to MongoDB Atlas!');
+        console.log('Successfully connected to MongoDB Atlas!');
     })
     .catch((error) => {
         console.log('Unable to connect to MongoDB Atlas!');
