@@ -5,7 +5,7 @@ const userSchema = mongoose.Sechema({
     email: {
         type: String,
         required: true,
-        uniquetrue
+        unique: true
     },
     password: {
         type: String,
