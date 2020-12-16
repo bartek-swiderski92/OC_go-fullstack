@@ -15,6 +15,7 @@ exports.createThing = (req, res, next) => {
             message: 'Post saved successfully!'
         });
     }).catch((error) => {
+        console.log(error);
         req.status(400).json({
             error: error
         });
