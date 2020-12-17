@@ -1,7 +1,7 @@
 const Thing = require('../models/thing');
 
 exports.createThing = (req, res, next) => {
-    req.body.thing = Json.parse(req.body.thing);
+    req.body.thing = JSON.parse(req.body.thing);
     const url = req.protocol + '://' + req.get('host');
     const thing = new Thing({
         title: req.body.thing.title,
